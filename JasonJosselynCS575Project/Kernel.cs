@@ -61,8 +61,6 @@ namespace JasonJosselynCS575Project
                     Parameters += c;
                 }
             }
-            Console.WriteLine("Command: " + Command);
-            Console.WriteLine("Parameters: " + Parameters);
         }
     }
 
@@ -202,13 +200,14 @@ namespace JasonJosselynCS575Project
         public ConcreteSettingsCommandBackgroundColor(string parameters) : base(parameters) { }
         public override void Execute()
         {
-            if (parameters == "")
+            ConsoleColor consoleColor = ConsoleColorFactory.GetColor(parameters);
+            if (consoleColor == ConsoleColor.DarkCyan)
             {
-                Console.Write(ConsoleColorFactory.GetColorsArrayString());
+                Console.WriteLine(ConsoleColorFactory.GetColorsArrayString());
             }
             else
             {
-                Console.BackgroundColor = ConsoleColorFactory.GetColor(parameters);
+                Console.BackgroundColor = consoleColor;
             }
         }
     }
@@ -218,13 +217,14 @@ namespace JasonJosselynCS575Project
         public ConcreteSettingsCommandTextColor(string parameters) : base(parameters) { }
         public override void Execute()
         {
-            if (parameters == "")
+            ConsoleColor consoleColor = ConsoleColorFactory.GetColor(parameters);
+            if (consoleColor == ConsoleColor.DarkCyan)
             {
-                Console.Write(ConsoleColorFactory.GetColorsArrayString());
+                Console.WriteLine(ConsoleColorFactory.GetColorsArrayString());
             }
             else
             {
-                Console.ForegroundColor = ConsoleColorFactory.GetColor(parameters);
+                Console.ForegroundColor = consoleColor;
             }
         }
     }
@@ -356,7 +356,7 @@ namespace JasonJosselynCS575Project
         }
         public override string Description
         {
-            get { return "adjusts background color using parameter options: "; } // + ConsoleColorFactory.GetColorsArrayTostring(); }
+            get { return "adjusts background color using parameter string of color"; }
         }
         public override Command CreateCommand(string parameters)
         {
@@ -372,7 +372,7 @@ namespace JasonJosselynCS575Project
         }
         public override string Description
         {
-            get { return "adjusts text color using parameter options: "; } // + ConsoleColorFactory.GetColorsArrayTostring(); }
+            get { return "adjusts text color using parameter string of color"; }
         }
         public override Command CreateCommand(string parameters)
         {
@@ -398,8 +398,8 @@ namespace JasonJosselynCS575Project
 
     static class ConsoleColorFactory
     {
-        private static string[] consoleColorsStrings = new string[] { "Black", "Blue", "Cyan", "DarkBlue", "DarkCyan", "DarkGray", "DarkGreen", "DarkMagenta", "DarkRed", "DarkYellow", "Gray", "Green", "Magenta", "Red", "White", "Yellow" };
-        private static ConsoleColor[] consoleColors = new ConsoleColor[] { ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Cyan, ConsoleColor.DarkBlue, ConsoleColor.DarkCyan, ConsoleColor.DarkGray, ConsoleColor.DarkGreen, ConsoleColor.DarkMagenta, ConsoleColor.DarkRed, ConsoleColor.DarkYellow, ConsoleColor.Gray, ConsoleColor.Green, ConsoleColor.Magenta, ConsoleColor.Red, ConsoleColor.White, ConsoleColor.Yellow };
+        private static string[] consoleColorsStrings = new string[] { "Black", "Blue", "Cyan", "DarkBlue", "DarkGray", "DarkGreen", "DarkMagenta", "DarkRed", "DarkYellow", "Gray", "Green", "Magenta", "Red", "White", "Yellow" };
+        private static ConsoleColor[] consoleColors = new ConsoleColor[] { ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Cyan, ConsoleColor.DarkBlue, ConsoleColor.DarkGray, ConsoleColor.DarkGreen, ConsoleColor.DarkMagenta, ConsoleColor.DarkRed, ConsoleColor.DarkYellow, ConsoleColor.Gray, ConsoleColor.Green, ConsoleColor.Magenta, ConsoleColor.Red, ConsoleColor.White, ConsoleColor.Yellow };
 
         public static ConsoleColor GetColor(string input)
         {
@@ -411,15 +411,20 @@ namespace JasonJosselynCS575Project
                     return consoleColors[index];
                 }
             }
-            return ConsoleColor.White;
+            return ConsoleColor.DarkCyan;
         }
         public static string GetColorsArrayString()
         {
-            string colorString = "Default (white)";
+            string extraColorString = "";
             foreach (string consoleColorString in consoleColorsStrings)
             {
-                colorString += ", ";
-                colorString += consoleColorString;
+                extraColorString += consoleColorString;
+                extraColorString += ", ";
+            }
+            string colorString = "";
+            for (int index=0; index<extraColorString.Length-2; index++)
+            {
+                colorString += extraColorString[index];
             }
             return colorString;
         }

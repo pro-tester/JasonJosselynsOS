@@ -12,3 +12,4 @@ c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575
 c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575Project\JasonJosselynCS575Project\bin\Debug\Cosmos.Core.pdb
 c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575Project\JasonJosselynCS575Project\obj\Debug\JasonJosselynCS575Project.dll
 c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575Project\JasonJosselynCS575Project\obj\Debug\JasonJosselynCS575Project.pdb
+c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575Project\JasonJosselynCS575Project\obj\Debug\JasonJosselynCS575Project.csprojResolveAssemblyReference.cache
