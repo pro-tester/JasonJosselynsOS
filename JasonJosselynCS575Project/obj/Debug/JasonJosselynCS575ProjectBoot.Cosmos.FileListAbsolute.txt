@@ -1,0 +1,1 @@
+c:\users\jason josselyn\documents\visual studio 2015\Projects\JasonJosselynCS575Project\JasonJosselynCS575Project\obj\Debug\JasonJosselynCS575ProjectBoot.CosmosResolveAssemblyReference.cache
